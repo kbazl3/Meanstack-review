@@ -18,6 +18,7 @@ app.post('/api/food', foodCtrl.addFood);
 app.post('/api/food/reviews', foodCtrl.addReview);
 app.get('/api/food', foodCtrl.getFood);
 app.get('/api/food/review', foodCtrl.getOneReview);
+app.delete('/api/food', foodCtrl.deleteFood);
 
 
 app.listen(port, function() {

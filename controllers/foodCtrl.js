@@ -42,5 +42,17 @@ module.exports = {
                 res.send(foodItem.reviews.id(req.query.reviewId));
             }
         })
+    },
+
+    deleteFood: (req, res) => {
+        console.log(req.query.foodId);
+        Food.findByIdAndRemove(req.query.foodId, (err, foodItem) => {
+            if (err) {
+                res.status(500).send(err);
+            } else {
+                res.send(foodItem)
+            }
+        })
     }
 }
+//db.things.remove({_id: ObjectId("4f6f244f6f35438788aa138f")});
