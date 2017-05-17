@@ -10,6 +10,15 @@ angular.module('menu')
             })
         }
 
+        $scope.getOneReview = function(foodId, reviewId) {
+            console.log(foodId, reviewId);
+            $http.get('/api/food/review?foodId=' + foodId + "reviewId=" + reviewId)
+                .then((response) => {
+                    console.log(response);
+                    $scope.selectedReview = response.data;
+                })
+        }
+
         $scope.getFood();
 
     });
