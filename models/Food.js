@@ -1,0 +1,15 @@
+const mongoose = require('mongoose'),
+    Schema = mongoose.Schema;
+
+
+const Food = Schema({
+    color: String,
+    name: { type: String, required: true },
+    reviews: [{
+        reviewer: { type: String, required: true},
+        rating: { type: Number, required: true},
+        date: { type: Date, default: new Date() }
+    }]
+});
+
+module.exports = mongoose.model('Food', Food);
