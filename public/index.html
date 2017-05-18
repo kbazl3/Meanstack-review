@@ -6,17 +6,30 @@
     </head>
     <body ng-controller="mainCtrl">
 
+        <div>
+            Food Name<input ng-model="foodName" type="text">
+            Color<input ng-model="foodColor" type="text">
+            Your Name<input ng-model="foodReviewer" type="text">
+            Your Review<input ng-model="foodRating" type="text">
+        </div>
+        <button ng-click="submitReview()">Submit Review</button>
+        <hr>
+        <br><br>
+        <br>
+        <br>
+        <br>
+
 
 <div ng-if="selectedReview">
     {{selectedReview.rating}} by {{selectedReview.reviewer}}
 </div>
 
         <div ng-repeat="food in foods">
-            {{food.name}}, {{food.color}}.
+            {{food.name}}, {{food.color}}. ---- {{food._id}} <button ng-click="deleteFood(food._id, review._id)">Delete Food</button>
             <ul>
-                <li ng-repeat="review in food.reviews"> {{review.reviewer}} {{food._id}}
+                <li ng-repeat="review in food.reviews"> {{review.reviewer}}
                     <button ng-click="getOneReview(food._id, review._id)">Find Review</button>
-                    <button ng-click="deleteFood(food._id, review._id)">Delete Food</button>
+
                 </li>
 
             </ul>

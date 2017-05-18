@@ -1,8 +1,10 @@
 const Food = require('../models/Food');
 
 module.exports = {
-    addFood: function(req, res) {
-        new Food(req.body).save(function(err, data) {
+
+    addFood: (req, res) => {
+        new Food(req.body).save((err, data) => {
+            console.log(req.body);
             if (err) {
                 res.status(500).send(err);
             } else {
@@ -11,19 +13,19 @@ module.exports = {
         });
     },
 
-    getFood: function(req, res) {
-        Food.find().then(function(response) {
+    getFood: (req, res) => {
+        Food.find().then((response) => {
             res.send(response);
         })
     },
 
-    addReview: function(req, res) {
-        Food.findById(req.query.id, function(err, foodItem) {
+    addReview: (req, res) => {
+        Food.findById(req.query.id, (err, foodItem) => {
             if (err) {
                 res.status(500).send(err);
             } else {
                 foodItem.reviews.push(req.body);
-                foodItem.save(function(err, data) {
+                foodItem.save((err, data) => {
                     if (err) {
                         res.status(500).send(err)
                     } else {

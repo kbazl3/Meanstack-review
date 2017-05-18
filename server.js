@@ -21,12 +21,12 @@ app.get('/api/food/review', foodCtrl.getOneReview);
 app.delete('/api/food', foodCtrl.deleteFood);
 
 
-app.listen(port, function() {
+app.listen(port, () => {
     console.log("listening on ", + port);
 })
 
 
 mongoose.connect(mongoUri);
-mongoose.connection.once('open', function() {
+mongoose.connection.once('open', () => {
     console.log('connected to MongoDB at ', mongoUri);
 })

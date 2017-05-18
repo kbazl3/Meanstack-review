@@ -3,15 +3,30 @@ angular.module('menu')
 
         $scope.test = "test";
 
-        $scope.getFood = function() {
-            $http.get('/api/food').then(function(response) {
+        $scope.submitReview = () => {
+            let reviewObject = {
+                color: $scope.foodColor,
+                name: $scope.foodName,
+                reviews: [{
+                    reviewer: $scope.foodReviewer,
+                    rating: $scope.foodRating
+                }]
+            }
+            console.log(reviewObject);
+            $http.post('/api/food', reviewObject).then((response) => {
+                console.log(response.data);
+                $scope.getFood();
+            })
+        }
+
+        $scope.getFood = () => {
+            $http.get('/api/food').then((response) => {
                 $scope.foods = response.data;
                 console.log(response.data);
             })
         }
 
-        $scope.getOneReview = function(foodId, reviewId) {
-            console.log(foodId, reviewId);
+        $scope.getOneReview = (foodId, reviewId) => {
             $http.get('/api/food/review?foodId=' + foodId + "&reviewId=" + reviewId)
                 .then((response) => {
                     console.log(response);
@@ -21,9 +36,11 @@ angular.module('menu')
 
         $scope.deleteFood = (foodId) => {
             console.log(foodId);
-            $http.delete('/api/food?foodId=' + foodId).then(function(response) {
+            $http.delete('/api/food?foodId=' + foodId).then((response) => {
                 console.log(response);
             })
+
+            $scope.getFood();
         }
 
         $scope.getFood();
